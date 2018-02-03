@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+from os.path import expanduser
 import sys
 import re
 from docx import Document
@@ -8,7 +10,10 @@ from docx import oxml
 from docx.shared import Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
-document = Document('~/libreoffice/template.docx')
+
+home = expanduser("~")
+os.chdir("%s/libreoffice" % home)
+document = Document('template.docx')
 
 def to_unicode(text):
     return unicode(text, 'utf-8')
@@ -57,7 +62,7 @@ def process():
 
     delete_paragraph(document.paragraphs[0])
 
-    data = open("~/libreoffice/medidas.txt").read()
+    data = open("medidas.txt").read()
     fichas = data.split("CÓDIGO MEDIDA")
 
     for ficha in [ficha for ficha in fichas if len(ficha) > 20]:
@@ -82,4 +87,4 @@ def process():
 
 if __name__ =="__main__":
     process()
-    document.save("~/libreoffice/fichas.docx")
+    document.save("fichas.docx")

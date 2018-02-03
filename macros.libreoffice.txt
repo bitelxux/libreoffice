@@ -4,7 +4,7 @@ Sub Main
 End Sub
 
 Function gen_fichas_docx
-    Shell("python ~/libreoffice/gen_fichas.py",10)
+    Shell("python /home/" + environ("USER") + "/libreoffice/gen_fichas.py",10)
 End function
 
 
@@ -21,7 +21,7 @@ function exportar_medidas_a_txt
 	rem ----------------------------------------------------------------------
 	dim args1(2) as new com.sun.star.beans.PropertyValue
 	args1(0).Name = "URL"
-	args1(0).Value = "file:///~/libreoffice/medidas.txt"
+	args1(0).Value = "file:///home/" + environ("USER") + "/libreoffice/medidas.txt"
 	args1(1).Name = "FilterName"
 	args1(1).Value = "Text (encoded)"
 	args1(2).Name = "FilterOptions"
@@ -47,7 +47,7 @@ function insert_fichas
 	rem ----------------------------------------------------------------------
 	dim args2(1) as new com.sun.star.beans.PropertyValue
 	args2(0).Name = "Name"
-	args2(0).Value = "file:///~/libreoffice/fichas.docx"
+	args2(0).Value = "file:///home/"  + environ("USER") + "/libreoffice/fichas.docx"
 	args2(1).Name = "Filter"
 	args2(1).Value = "MS Word 2007 XML"
 
@@ -67,5 +67,5 @@ sub fichas
 
 	exportar_medidas_a_txt()
 	gen_fichas_docx()
-	sVar = MsgBox( "fichas.docx generado en ~/libreoffice/fichas.docx" & chr(13) & "Ya solo tienes que insertarlo donde quieras :-)",0 + 64,"Yuhuuuuuuuuuuuu")
+	sVar = MsgBox( "fichas.docx generado en /home/"  + environ("USER") + "/libreoffice/fichas.docx" & chr(13) & "Ya solo tienes que insertarlo donde quieras :-)",0 + 64,"Yuhuuuuuuuuuuuu")
 end sub
