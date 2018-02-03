@@ -1,0 +1,71 @@
+REM  *****  BASIC  *****
+
+Sub Main
+End Sub
+
+Function gen_fichas_docx
+    Shell("python ~/libreoffice/gen_fichas.py",10)
+End function
+
+
+function exportar_medidas_a_txt
+	rem ----------------------------------------------------------------------
+	rem define variables
+	dim document   as object
+	dim dispatcher as object
+	rem ----------------------------------------------------------------------
+	rem get access to the document
+	document   = ThisComponent.CurrentController.Frame
+	dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+	rem ----------------------------------------------------------------------
+	dim args1(2) as new com.sun.star.beans.PropertyValue
+	args1(0).Name = "URL"
+	args1(0).Value = "file:///~/libreoffice/medidas.txt"
+	args1(1).Name = "FilterName"
+	args1(1).Value = "Text (encoded)"
+	args1(2).Name = "FilterOptions"
+	args1(2).Value = "UTF8,LF,,,"
+
+	dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, args1())
+end function
+
+
+function insert_fichas
+	rem ----------------------------------------------------------------------
+	rem define variables
+	dim document   as object
+	dim dispatcher as object
+	rem ----------------------------------------------------------------------
+	rem get access to the document
+	document   = ThisComponent.CurrentController.Frame
+	dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+	rem ----------------------------------------------------------------------
+	rem dispatcher.executeDispatch(document, ".uno:InsertDoc", "", 0, Array())
+
+	rem ----------------------------------------------------------------------
+	dim args2(1) as new com.sun.star.beans.PropertyValue
+	args2(0).Name = "Name"
+	args2(0).Value = "file:///~/libreoffice/fichas.docx"
+	args2(1).Name = "Filter"
+	args2(1).Value = "MS Word 2007 XML"
+
+	dispatcher.executeDispatch(document, ".uno:InsertDoc", "", 0, args2())
+end function
+
+
+sub fichas
+	rem ----------------------------------------------------------------------
+	rem define variables
+	dim document   as object
+	dim dispatcher as object
+	rem ----------------------------------------------------------------------
+	rem get access to the document
+	document   = ThisComponent.CurrentController.Frame
+	dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+	exportar_medidas_a_txt()
+	gen_fichas_docx()
+	sVar = MsgBox( "fichas.docx generado en ~/libreoffice/fichas.docx" & chr(13) & "Ya solo tienes que insertarlo donde quieras :-)",0 + 64,"Yuhuuuuuuuuuuuu")
+end sub
