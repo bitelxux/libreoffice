@@ -4,7 +4,7 @@ Personal stuff about automating content creation on librewriter.
 
 ## How to use
 
-- Clone at /home/<user>/libreoffice
+- Clone at ```/home/<user>/libreoffice```
 - Open the file ```provided.example.odt```
 - execute the macro ```fichas```
 
