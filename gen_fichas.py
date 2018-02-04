@@ -9,10 +9,12 @@ from docx import Document
 from docx import oxml
 from docx.shared import Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
-
+from docx.enum.style import WD_STYLE_TYPE
 
 home = expanduser("~")
 os.chdir("%s/libreoffice" % home)
+os.system("rm -f fichas.docx")
+
 document = Document('template.docx')
 
 def to_unicode(text):
