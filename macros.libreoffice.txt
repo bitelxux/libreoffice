@@ -7,7 +7,6 @@ Function gen_fichas_docx
     Shell("python /home/" + environ("USER") + "/libreoffice/gen_fichas.py",10)
 End function
 
-
 function exportar_medidas_a_txt
 	rem ----------------------------------------------------------------------
 	rem define variables
@@ -29,7 +28,6 @@ function exportar_medidas_a_txt
 
 	dispatcher.executeDispatch(document, ".uno:SaveAs", "", 0, args1())
 end function
-
 
 function insert_fichas
 	rem ----------------------------------------------------------------------
@@ -53,7 +51,6 @@ function insert_fichas
 
 	dispatcher.executeDispatch(document, ".uno:InsertDoc", "", 0, args2())
 end function
-
 
 sub fichas
 	rem ----------------------------------------------------------------------
